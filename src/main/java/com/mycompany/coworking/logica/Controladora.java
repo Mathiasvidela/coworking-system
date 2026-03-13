@@ -1,6 +1,7 @@
 package com.mycompany.coworking.logica;
 
 import com.mycompany.coworking.persistencia.ControladoraPersistencia;
+import java.util.List;
 
 public class Controladora {
  
@@ -29,8 +30,18 @@ public class Controladora {
         reserva.setEspacio(espacio);
         reserva.setEstado(estado);
         reserva.setObservaciones(observaciones);
+        // relacionar reserva con miembro
+        reserva.setUnMiembro(miembro);
+
         
         controlPersis.guardar(miembro,reserva);
+        
+        
+    }
+
+    public List<Reserva> traerReservas() {
+        
+        return controlPersis.TraerReservas();
         
         
     }

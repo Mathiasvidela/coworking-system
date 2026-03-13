@@ -1,0 +1,12 @@
+# archivos de configuración local
+config.properties
+
+# archivos del sistema
+.DS_Store
+Thumbs.db
+
+# archivos de NetBeans
+nbproject/private/
+
+# compilados
+target/

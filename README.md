@@ -47,7 +47,7 @@ El proyecto está organizado en capas para mantener una mejor separación de res
 La aplicación cuenta con una pantalla principal desde donde el usuario puede acceder a las distintas acciones del sistema.
 
 ### Pantalla principal
-[Captura-de-pantalla-2026-03-16-175741.png](https://postimg.cc/TyFmGJ61)
+<a href='https://postimg.cc/TyFmGJ61' target='_blank'><img src='https://i.postimg.cc/TyFmGJ61/Captura-de-pantalla-2026-03-16-175741.png' border='0' alt='Captura-de-pantalla-2026-03-16-175741'></a>
 Desde la ventana inicial se puede:
 
 - **Cargar Datos**: abre el formulario para registrar una nueva reserva

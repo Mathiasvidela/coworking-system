@@ -70,7 +70,7 @@ En la pantalla de carga de datos se ingresan dos grupos de información:
 - Apellido
 - Celular
 - Email
-- Membresía
+- Tipo de cliente
 
 Al presionar el botón **Guardar**, los datos ingresados se envían a la capa lógica para ser procesados y almacenados.
 

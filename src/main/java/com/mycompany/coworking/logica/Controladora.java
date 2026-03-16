@@ -46,6 +46,56 @@ public class Controladora {
         
     }
 
+    public void borrarReserva(int idReserva) {
+        
+        controlPersis.borrarReserva(idReserva);
+
+    }
+
+    public Reserva traerReserva(int idReserva) {
+        return controlPersis.traerReserva(idReserva);
+        
+    }
+
+    public void modificarReserva(Reserva reserv, String nombre, String apellido, String celular, String email,
+            String membresia, String observaciones, String fecha, String horaInicio, String horaFin, String tipo,
+            String espacio, String estado) {
+        
+        reserv.setObservaciones(observaciones);
+        reserv.setFecha(fecha);
+        reserv.setHoraInicio(horaInicio);
+        reserv.setHoraFin(horaFin);
+        reserv.setTipo(tipo);
+        reserv.setEstado(estado);
+        reserv.setEspacio(espacio);
+        
+        //modificar reserva
+        controlPersis.modificarReserva(reserv);
+        
+        //setear el cliente
+        Miembro miembro = this.buscarCliente(reserv.getUnMiembro().getIdMiembro());
+        miembro.setNombre(nombre);
+        miembro.setApellido(apellido);
+        miembro.setCelular(celular);
+        miembro.setEmail(email);
+        miembro.setTipoMembresia(membresia);
+        
+        //modificar cliente
+        this.modificarCliente(miembro);
+        
+        
+    }
+
+    private Miembro buscarCliente(int idMiembro) {
+       return controlPersis.traerCliente(idMiembro);
+    }
+
+    private void modificarCliente(Miembro miembro) {
+        controlPersis.modificarCliente(miembro);
+    }
+
+  
+
    
     
 }

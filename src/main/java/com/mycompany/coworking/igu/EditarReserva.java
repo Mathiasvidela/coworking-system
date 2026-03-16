@@ -1,17 +1,20 @@
 package com.mycompany.coworking.igu;
 
 import com.mycompany.coworking.logica.Controladora;
+import com.mycompany.coworking.logica.Reserva;
 import com.mycompany.coworking.util.MessageUtil;
 import java.awt.Color;
-import javax.swing.JOptionPane;
 
 
-public class CargaDatos extends javax.swing.JFrame {
 
-    Controladora control = new Controladora();
+public class EditarReserva extends javax.swing.JFrame {
+    Reserva reserv;
+    Controladora control = null;
    
-    public CargaDatos() {
+    public EditarReserva(int idReserva) {
+        control = new Controladora();
         initComponents();
+        cargarDatos(idReserva);
         
         jPanel2.setBackground(new Color(46,48,63));
         jPanel2.putClientProperty("JComponent.arc", 30);
@@ -125,7 +128,7 @@ public class CargaDatos extends javax.swing.JFrame {
         jLabel15.setText("Email:");
 
         jLabel16.setFont(new java.awt.Font("Space Grotesk", 1, 12)); // NOI18N
-        jLabel16.setText("Tipo cliente:");
+        jLabel16.setText("Membresia:");
 
         txtApellido.setBackground(new java.awt.Color(46, 48, 63));
 
@@ -218,7 +221,7 @@ public class CargaDatos extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(35, 37, 51));
 
         jLabel11.setFont(new java.awt.Font("Space Grotesk", 1, 24)); // NOI18N
-        jLabel11.setText("Carga de datos");
+        jLabel11.setText("Modificacion de reserva");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -311,7 +314,7 @@ public class CargaDatos extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Space Grotesk SemiBold", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/guardar.png"))); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Guardar cambios");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -403,38 +406,32 @@ public class CargaDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-         
+        //datos del clientes
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String celular = txtCelular.getText();
         String email = txtEmail.getText();
-        String membresia = cmbMembresia.getSelectedItem().toString();
+        String membresia = (String) cmbMembresia.getSelectedItem().toString();
         String observaciones = txtObservaciones.getText();
-
+        //datos de la reserva
         String fecha = txtFecha.getText();
         String horaInicio = txtHoraInicio.getText();
         String horaFin = txtHoraFin.getText();
-        String tipo = cmbTipo.getSelectedItem().toString();
-        String espacio = cmbEspacio.getSelectedItem().toString();
-        String estado = cmbEstado.getSelectedItem().toString();
+        String tipo = (String) cmbTipo.getSelectedItem().toString();
+        String espacio = (String) cmbEspacio.getSelectedItem().toString();
+        String estado = (String) cmbEstado.getSelectedItem().toString();
 
-        control.guardar(
-            nombre,
-            apellido,
-            celular,
-            email,
-            membresia,
-            observaciones,
-            fecha,
-            horaInicio,
-            horaFin,
-            tipo,
-            espacio,
-            estado
-        );
+        
+        control.modificarReserva(reserv,nombre,apellido,celular,email,membresia,observaciones,fecha,horaInicio,horaFin,tipo,espacio,estado);
 
         //mensaje de guardado exitoso
-        MessageUtil.mostrarMensaje("Se guardó correctamente", "Info", "Guardado exitoso");
+        MessageUtil.mostrarMensaje("Se modificaron los datos correctamente", "Info", "Modificacion Exitosa");
+        
+        VerDatos pantallaDatos = new VerDatos();
+        pantallaDatos.setVisible(true);
+        pantallaDatos.setLocationRelativeTo(null);
+        
+        this.dispose();
         
         limpiarDatos();
     }//GEN-LAST:event_btnGuardarActionPerformed
@@ -467,9 +464,10 @@ public class CargaDatos extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         
-        Principal pantalla = new Principal();
-        pantalla.setVisible(true);
-        pantalla.setLocationRelativeTo(null);
+        
+        VerDatos pantallaDatos = new VerDatos();
+        pantallaDatos.setVisible(true);
+        pantallaDatos.setLocationRelativeTo(null);
 
         this.dispose();
         
@@ -514,4 +512,70 @@ public class CargaDatos extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextArea txtObservaciones;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarDatos(int idReserva) {
+        
+        this.reserv = control.traerReserva(idReserva);
+        
+        txtNombre.setText(reserv.getUnMiembro().getNombre());
+        txtApellido.setText(reserv.getUnMiembro().getApellido());
+        txtCelular.setText(reserv.getUnMiembro().getCelular());
+        txtEmail.setText(reserv.getUnMiembro().getEmail());
+        
+        //-, Individual, Empresa, Institución
+        if (reserv.getUnMiembro().getTipoMembresia().equals("Individual")){
+            cmbMembresia.setSelectedIndex(1);
+        } else if (reserv.getUnMiembro().getTipoMembresia().equals("Empresa")){
+            cmbMembresia.setSelectedIndex(2);
+        } else{
+            if(reserv.getUnMiembro().getTipoMembresia().equals("Institución")){
+                cmbMembresia.setSelectedIndex(3);
+            }
+        }
+            
+        
+        
+        txtFecha.setText(reserv.getFecha());
+        txtHoraFin.setText(reserv.getHoraFin());
+        txtHoraInicio.setText(reserv.getHoraInicio());
+        txtObservaciones.setText(reserv.getObservaciones());
+        
+        //Espacio -, Sala 1, Sala 2, Puesto A1, Puesto A2
+        if (reserv.getEspacio().equals("Sala 1")){
+            cmbEspacio.setSelectedIndex(1);
+        } else if (reserv.getEspacio().equals("Sala 2")) {
+            cmbEspacio.setSelectedIndex(2);
+        } else if (reserv.getEspacio().equals("Puesto A1")){
+            cmbEspacio.setSelectedIndex(3);
+        } else {
+            if (reserv.getEspacio().equals("Puesto A2")){
+                cmbEspacio.setSelectedIndex(4);
+            }
+        }
+        
+        //estado -, Confirmada, Pendiente, Cancelada
+        if (reserv.getEstado().equals("Confirmada")){
+            cmbEstado.setSelectedIndex(1);
+        } else if (reserv.getEstado().equals("Pendiente")) {
+            cmbEstado.setSelectedIndex(2);
+        }  else {
+            if (reserv.getEstado().equals("Cancelada")){
+                cmbEstado.setSelectedIndex(3);
+            }
+        }
+
+        
+        //tipo -, Sala, Puesto
+        if (reserv.getTipo().equals("Sala")){
+            cmbTipo.setSelectedIndex(1);
+        } else {
+            if (reserv.getEstado().equals("Puesto")){
+                cmbTipo.setSelectedIndex(2);
+            }
+        }
+        
+        
+        
+        
+    }
 }

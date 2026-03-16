@@ -1,10 +1,10 @@
 package com.mycompany.coworking.igu;
 
 import com.mycompany.coworking.logica.Controladora;
-import com.mycompany.coworking.logica.Miembro;
 import com.mycompany.coworking.logica.Reserva;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import com.mycompany.coworking.util.MessageUtil;
 
 
 public class VerDatos extends javax.swing.JFrame {
@@ -164,13 +164,62 @@ public class VerDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditarActionPerformed
-        // TODO add your handling code here:
+       if (tablaReservas.getRowCount() > 0){
+            
+            //condicional para controlar que se selecciono un registro
+            if(tablaReservas.getSelectedRow() != -1){
+                
+                int idReserva = Integer.parseInt(String.valueOf(tablaReservas.getValueAt(tablaReservas.getSelectedRow(), 0)));
+                
+                EditarReserva pantallaEditar = new EditarReserva(idReserva);
+                pantallaEditar.setVisible(true);
+                pantallaEditar.setLocationRelativeTo(null);
+                this.dispose();
+
+            }
+            else{
+                MessageUtil.mostrarMensaje("No se selecciono ninguna reserva", "Error", "Error al eliminar");
+            }
+   
+        }
+        else{
+            MessageUtil.mostrarMensaje("No hay registros para eliminar en la tabla", "Error", "Error al eliminar");
+        }
+            
+        
+        
+        
     }//GEN-LAST:event_BtnEditarActionPerformed
 
     private void BtnEliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminar1ActionPerformed
-        // TODO add your handling code here:
+        
+        //buscar el elemento en la DB
+        
+        //controlar que la tabla no este vacia
+        if (tablaReservas.getRowCount() > 0){
+            
+            //condicional para controlar que se selecciono un registro
+            if(tablaReservas.getSelectedRow() != -1){
+                int idReserva = Integer.parseInt(String.valueOf(tablaReservas.getValueAt(tablaReservas.getSelectedRow(), 0)));
+                control.borrarReserva(idReserva);
+                
+                //mensaje de guardado exitoso
+                MessageUtil.mostrarMensaje("Se elemino la reserva Correctamente", "Info", "Eliminacion de reserva");
+                cargarTabla();
+            }
+            else{
+                MessageUtil.mostrarMensaje("No se selecciono ninguna reserva", "Error", "Error al eliminar");
+            }
+   
+        }
+        else{
+            MessageUtil.mostrarMensaje("No hay registros para eliminar en la tabla", "Error", "Error al eliminar");
+        }
     }//GEN-LAST:event_BtnEliminar1ActionPerformed
 
+    
+    
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         Principal pantalla = new Principal();
         pantalla.setVisible(true);
@@ -200,7 +249,7 @@ public class VerDatos extends javax.swing.JFrame {
 
     private void cargarTabla() {
         
-        DefaultTableModel tabla = new DefaultTableModel(){
+        DefaultTableModel modeloTabla = new DefaultTableModel(){
             
             //que no sean editables las filas y columnas
             @Override
@@ -211,10 +260,10 @@ public class VerDatos extends javax.swing.JFrame {
         
         //establecer los nombres de las columnas
         String titulos[]  = {"ID", "Fecha", "Hora inicio", "Hora fin",
-            "tipo", "espacio", "Estado", 
-            "Nombre", "Apellido", "Membresia"};   
+            "Tipo", "Espacio", "Estado", 
+            "Nombre", "Apellido", "Cliente"};   
         
-         tabla.setColumnIdentifiers(titulos);  
+         modeloTabla.setColumnIdentifiers(titulos);  
          
          //carga de datos desde la BD
          List<Reserva> listaReserva = control.traerReservas();
@@ -234,11 +283,11 @@ public class VerDatos extends javax.swing.JFrame {
                  reserva.getUnMiembro().getApellido(),
                  reserva.getUnMiembro().getTipoMembresia()};
                  
-                 tabla.addRow(objReserva);
+                 modeloTabla.addRow(objReserva);
              }
          }
          
-         tablaReservas.setModel(tabla);
+         tablaReservas.setModel(modeloTabla);
         
     };
 }

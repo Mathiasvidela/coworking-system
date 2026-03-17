@@ -47,7 +47,8 @@ El proyecto está organizado en capas para mantener una mejor separación de res
 La aplicación cuenta con una pantalla principal desde donde el usuario puede acceder a las distintas acciones del sistema.
 
 ### Pantalla principal
-<a href='https://postimg.cc/TyFmGJ61' target='_blank'><img src='https://i.postimg.cc/TyFmGJ61/Captura-de-pantalla-2026-03-16-175741.png' border='0' alt='Captura-de-pantalla-2026-03-16-175741'></a>
+<img width="748" height="445" alt="image 45" src="https://github.com/user-attachments/assets/97ef9de9-adc0-413b-a7b4-798fd52cb13b" />
+
 Desde la ventana inicial se puede:
 
 - **Cargar Datos**: abre el formulario para registrar una nueva reserva
@@ -55,6 +56,7 @@ Desde la ventana inicial se puede:
 - **Salir**: cierra la aplicación
 
 ### Formulario de carga
+<img width="3182" height="2750" alt="image 46" src="https://github.com/user-attachments/assets/ec856d93-07b5-4ec7-a156-eb64e7bd3d85" />
 En la pantalla de carga de datos se ingresan dos grupos de información:
 
 #### Reserva
@@ -74,6 +76,31 @@ En la pantalla de carga de datos se ingresan dos grupos de información:
 - Tipo de cliente
 
 Al presionar el botón **Guardar**, los datos ingresados se envían a la capa lógica para ser procesados y almacenados.
+
+
+### Edición de registros
+
+<img width="2880" height="1932" alt="image 47" src="https://github.com/user-attachments/assets/3eab04d8-f6a8-4e95-9b62-9d47b892611a" />
+Al seleccionar una fila de la tabla y presionar el botón de **Editar**, se abre un formulario con los datos previamente cargados.
+
+En esta pantalla:
+<img width="3173" height="2769" alt="image 48" src="https://github.com/user-attachments/assets/9634eefb-d3b3-42e7-bb45-44385cc881af" />
+
+- Se muestran los datos actuales del **miembro** y la **reserva**
+- El usuario puede modificar cualquier campo
+- Al presionar **Guardar**, los cambios se actualizan en la base de datos
+- La tabla se refresca mostrando la información actualizada
+
+### Eliminación de registros
+
+El sistema también permite eliminar reservas registradas.
+
+- El usuario selecciona una fila de la tabla
+- Presiona el botón **Eliminar**
+- Se elimina el registro de la base de datos
+- La tabla se actualiza automáticamente reflejando los cambios
+<img width="2880" height="1932" alt="image 49" src="https://github.com/user-attachments/assets/7a8ccfbe-0b38-4d1c-af47-d9731ed19809" />
+
 
 ---
 

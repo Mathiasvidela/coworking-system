@@ -90,6 +90,15 @@ En esta pantalla:
 - El usuario puede modificar cualquier campo
 - Al presionar **Guardar**, los cambios se actualizan en la base de datos
 - La tabla se refresca mostrando la información actualizada
+
+### Eliminación de registros
+
+El sistema también permite eliminar reservas registradas.
+
+- El usuario selecciona una fila de la tabla
+- Presiona el botón **Eliminar**
+- Se elimina el registro de la base de datos
+- La tabla se actualiza automáticamente reflejando los cambios
 <img width="2880" height="1932" alt="image 49" src="https://github.com/user-attachments/assets/7a8ccfbe-0b38-4d1c-af47-d9731ed19809" />
 
 

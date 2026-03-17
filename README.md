@@ -76,11 +76,11 @@ En la pantalla de carga de datos se ingresan dos grupos de información:
 - Tipo de cliente
 
 Al presionar el botón **Guardar**, los datos ingresados se envían a la capa lógica para ser procesados y almacenados.
-<img width="2880" height="1932" alt="image 47" src="https://github.com/user-attachments/assets/3eab04d8-f6a8-4e95-9b62-9d47b892611a" />
+
 
 ### Edición de registros
 
-
+<img width="2880" height="1932" alt="image 47" src="https://github.com/user-attachments/assets/3eab04d8-f6a8-4e95-9b62-9d47b892611a" />
 Al seleccionar una fila de la tabla y presionar el botón de **Editar**, se abre un formulario con los datos previamente cargados.
 
 En esta pantalla:

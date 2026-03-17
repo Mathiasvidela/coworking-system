@@ -47,7 +47,7 @@ El proyecto está organizado en capas para mantener una mejor separación de res
 La aplicación cuenta con una pantalla principal desde donde el usuario puede acceder a las distintas acciones del sistema.
 
 ### Pantalla principal
-<img src='https://i.postimg.cc/g2GHKpsP/image-45.png' border='0' alt='Pantalla principal'>
+<img src='https://i.postimg.cc/g2GHKpsP/image-45.png' border='0' alt='Pantalla principal' width='600'>
 Desde la ventana inicial se puede:
 
 - **Cargar Datos**: abre el formulario para registrar una nueva reserva
@@ -55,7 +55,7 @@ Desde la ventana inicial se puede:
 - **Salir**: cierra la aplicación
 
 ### Formulario de carga
-<img src='https://i.postimg.cc/47Jyv5rm/image-46.png' border='0' alt='Formulario de carga'>
+<img src='https://i.postimg.cc/47Jyv5rm/image-46.png' border='0' alt='Formulario de carga' width='600'>
 En la pantalla de carga de datos se ingresan dos grupos de información:
 
 #### Reserva
@@ -75,7 +75,7 @@ En la pantalla de carga de datos se ingresan dos grupos de información:
 - Tipo de cliente
 
 Al presionar el botón **Guardar**, los datos ingresados se envían a la capa lógica para ser procesados y almacenados.
-<a href='https://postimg.cc/Dm4kjsn3' target='_blank'><img src='https://i.postimg.cc/Dm4kjsn3/image-47.png' border='0' alt='image-47'></a>
+<img src='https://i.postimg.cc/Dm4kjsn3/image-47.png' border='0' alt='Tabla de reservas' width='600'>
 ---
 
 ## Flujo general del sistema
